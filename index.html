@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
@@ -26,15 +25,9 @@
     }
 
     @keyframes gradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     header {
@@ -49,7 +42,7 @@
 
     p {
       font-size: 1.2rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     section {
@@ -59,15 +52,21 @@
       border-radius: 8px;
       width: 80%;
       max-width: 800px;
-      text-align: left;
-      color: #fff;
     }
 
-    section h2 {
+    h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      color: #e8491d;
+      color: #fdd835;
       text-align: center;
+    }
+
+    h3 {
+      color: #ffd54f;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      font-weight: 700;
     }
 
     ul {
@@ -75,20 +74,20 @@
       padding: 0;
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.5rem;
       justify-content: center;
     }
 
     ul li {
-      background: #e8491d;
-      color: #fff;
+      background: #fbc02d;
+      color: #000;
       padding: 0.5rem 1rem;
       border-radius: 5px;
-      font-weight: 600;
+      font-weight: bold;
     }
 
     a {
-      color: #e8491d;
+      color: #fff176;
       text-decoration: none;
       font-weight: bold;
     }
@@ -97,92 +96,84 @@
       text-decoration: underline;
     }
 
-    /* New styles for Technical & Non-Technical Skills section */
-    #technical-nontechnical-skills h3 {
-      color: #f39c12;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      text-align: center;
-      font-weight: 700;
-    }
-
-    #technical-nontechnical-skills ul li {
-      background: #f39c12;
-      color: #fff;
-      padding: 0.4rem 1rem;
-      border-radius: 5px;
-      font-weight: 600;
-    }
-
-    footer {
-      margin: 3rem auto 1rem;
-      font-size: 0.9rem;
-      text-align: center;
-      color: #fff;
-    }
-
-    /* Responsive tweaks */
     @media (max-width: 600px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      section {
-        width: 95%;
-      }
-
-      ul {
-        flex-direction: column;
-        align-items: center;
-      }
+      h1 { font-size: 2.2rem; }
+      section { width: 95%; }
+      ul { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>V. Jaya Sai Kumar Reddy</h1>
-    <p>Web Developer | AI Enthusiast | JAVA | DSA | Problem Solver</p>
+    <p>AI/ML Enthusiast | Java & Python Developer | Problem Solver</p>
   </header>
 
   <section id="about">
     <h2>About Me</h2>
     <p>
-      I'm a passionate web developer based with experience in building responsive and user-friendly websites. I enjoy solving complex problems and continuously learning new technologies. I am a hardworking student who enjoys solving complex problems in a creative and unique approach. I am good with team work as well as leading one. I can adapt in any work environment. I am looking forward for my first work experience.</p>
+      I'm a B.Tech CSE (AI & ML) student passionate about artificial intelligence and machine learning.
+      Skilled in Java, Python, SQL, and DSA. I enjoy solving problems, leading teams, and building
+      impactful real-world projects. I seek a dynamic environment to continuously learn and grow.
+    </p>
   </section>
 
-  
-  <section id="technical-nontechnical-skills">
+  <section id="skills">
     <h2>Skills</h2>
     <h3>Technical Skills</h3>
     <ul>
       <li>Java</li>
-      <li>Data Structures & Algorithms (DSA)</li>
-<li>C</li>
-<li>Python</li>
-      <li>Web Development</li><li>HTML</li><li>CSS</li>
-      <li>React</li>
-      <li>Node.js</li>
+      <li>Python</li>
+      <li>C</li>
+      <li>SQL</li>
+      <li>Machine Learning</li>
+      <li>DSA</li>
+      <li>Data Analytics</li>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
     </ul>
     <h3>Non-Technical Skills</h3>
     <ul>
-      <li>Leadership</li>
-      <li>Creative Thinking</li>
       <li>Problem Solving</li>
-      <li>Teamwork</li>
+      <li>Team Leadership</li>
+      <li>Project Management</li>
+      <li>Collaboration</li>
       <li>Communication</li>
     </ul>
   </section>
 
-  <section id="resume">
-    <h2>Resume</h2>
-    <a href="resume.pdf" download>Download My Resume</a>
+  <section id="projects">
+    <h2>Projects</h2>
+    <h3>Diet Type Prediction Using ML</h3>
+    <p>
+      Built a machine learning model using Decision Tree and Naive Bayes to predict diet types
+      based on daily food intake, calories, work patterns, and health conditions. Led a team of 4,
+      organized peer-learning sessions, and evaluated model performance with standard metrics.
+    </p>
+    <h3>Personal Portfolio Website</h3>
+    <p>
+      Designed and developed a portfolio website using HTML, CSS, and JavaScript to showcase
+      projects, skills, and academic achievements in a responsive and engaging format.
+    </p>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <p><strong>B.Tech in CSE (AI & ML)</strong><br>
+      Kalasalingam Academy of Research and Education, Tamil Nadu, India<br>
+      2023 – 2027 | CGPA: 8.46</p>
+    <p><strong>Intermediate (MPC)</strong><br>
+      Ignite Junior College, Hyderabad, India<br>
+      2021 – 2023 | Percentage: 90.4%</p>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>Phno: <a href="tel:+918686854434">+91 8686854434</a></p>
     <p>Email: <a href="mailto:jayasaikumar890@gmail.com">jayasaikumar890@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/vjayasaikumarreddy/" target="_blank" rel="noopener noreferrer">linkedin.com/in/vjayasaikumarreddy</a></p>
-     </section>
+    <p>Phone: <a href="tel:+918686854434">+91 8686854434</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/vjayasaikumarreddy/" target="_blank">linkedin.com/in/vjayasaikumarreddy</a></p>
+    <p><a href="resume.pdf" target="_blank">View My Resume (PDF)</a></p>
+  </section>
 </body>
 </html>
