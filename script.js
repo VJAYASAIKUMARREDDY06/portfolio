@@ -20,18 +20,22 @@ document.getElementById('hamburger').onclick = () => {
 // Active nav highlight
 const secIds = ['home','about','skills','projects','experience','education','riddle','connect'];
 const navAs = document.querySelectorAll('.nav-links a');
+
 function updateNav() {
   const navH = document.querySelector('nav').offsetHeight;
   let cur = 'home';
+
   secIds.forEach(id => {
     const el = document.getElementById(id);
     if (el && window.scrollY >= el.offsetTop - navH - 10) cur = id;
   });
+
   navAs.forEach(a => {
     const onclick = a.getAttribute('onclick') || '';
-    a.classList.toggle('active', onclick.includes("'"+cur+"'"));
+    a.classList.toggle('active', onclick.includes("'" + cur + "'"));
   });
 }
+
 window.addEventListener('scroll', updateNav, { passive: true });
 updateNav();
 
@@ -41,8 +45,14 @@ updateNav();
 function openLink(url) {
   window.open(url, '_blank', 'noopener,noreferrer');
 }
+
 function openContact(type, value) {
   window.location.href = type + ':' + value;
+}
+
+/* ✅ NEW FUNCTION FOR OFFER LETTER */
+function openPDF(file) {
+  window.open(file, '_blank', 'noopener,noreferrer');
 }
 
 // ════════════════════════════════
