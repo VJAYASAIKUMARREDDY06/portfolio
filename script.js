@@ -18,7 +18,7 @@ document.getElementById('hamburger').onclick = () => {
 };
 
 // Active nav highlight
-const secIds = ['home','about','skills','projects','experience','education','riddle','connect'];
+const secIds = ['home','about','skills','projects','experience','extracurriculars','education','connect'];
 const navAs = document.querySelectorAll('.nav-links a');
 
 function updateNav() {
@@ -116,142 +116,7 @@ function typeEffect() {
 }
 typeEffect();
 
-// ════════════════════════════════
-// RIDDLE
-// ════════════════════════════════
-const riddles = [
-  { text: "I am not a pirate's map, yet I guide recruiters to the greatest treasure of all — me. What am I?", explanation: "A resume is your treasure map, leading directly to your value as a candidate." },
-  { text: "I am no wizard's grimoire, yet every page carries a spell of my journey. What am I?", explanation: "A resume is like a grimoire — filled with pages of experience and skills that define your journey." }
-];
-const chosen = riddles[Math.floor(Math.random() * riddles.length)];
-let revealed = ['_','_','_','_','_','_'];
-document.getElementById('riddleText').textContent = chosen.text;
-document.getElementById('riddleClue').textContent = revealed.join(' ');
 
-function checkRiddleAnswer() {
-  const val = document.getElementById('riddleAnswer').value.trim().toLowerCase();
-  const fb = document.getElementById('riddleFeedback');
-  const cl = document.getElementById('riddleClue');
-  if (val === 'resume') {
-    fb.textContent = '🎉 Correct! You\'ve unlocked my Resume!'; fb.className = 'ok';
-    cl.style.cssText = 'font-size:14px;letter-spacing:0;color:var(--muted);font-weight:400;min-height:0';
-    cl.textContent = chosen.explanation;
-    document.getElementById('resumeLinkSection').innerHTML = '<a href="resume.pdf" target="_blank" class="res-link">📄 View My Resume</a>';
-  } else {
-    fb.textContent = '❌ Not quite! Here\'s a clue:'; fb.className = 'no';
-    const hi = revealed.map((c,i) => c==='_'?i:null).filter(i=>i!==null);
-    if (hi.length) { const ri = hi[Math.floor(Math.random()*hi.length)]; revealed[ri] = 'RESUME'[ri]; }
-    document.getElementById('riddleClue').textContent = revealed.join(' ');
-  }
-}
-document.getElementById('riddleAnswer').addEventListener('keypress', e => { if (e.key==='Enter') checkRiddleAnswer(); });
-
-// ════════════════════════════════
-// ROCKET HINT ANIMATION
-// ════════════════════════════════
-let rocketActive = false;
-function launchRocket() {
-  if (rocketActive) return;
-  rocketActive = true;
-  document.getElementById('hintBtn').disabled = true;
-
-  // Create rocket
-  const rk = document.createElement('div');
-  rk.id = 'rocketEl';
-  rk.textContent = '🚀';
-  rk.style.cssText = 'position:fixed;font-size:58px;z-index:9999;pointer-events:none;top:55vh;left:-120px;transform:rotate(75deg);filter:drop-shadow(0 0 16px rgba(167,139,250,1)) drop-shadow(0 0 32px rgba(244,114,182,.8));';
-  document.body.appendChild(rk);
-
-  // Flame interval
-  const flameInt = setInterval(() => spawnFlame(rk), 42);
-
-  // Animate rocket: left → center (1.4s) → hold (0.6s) → exit right (1s)
-  const cx = Math.round(window.innerWidth * 0.42);
-  const halfH = Math.round(window.innerHeight * 0.43);
-
-  rk.animate([
-    { left:'-120px', top:'55vh', opacity:'0', transform:'rotate(75deg) scale(0.6)', offset:0 },
-    { left:'-60px',  top:'54vh', opacity:'1', transform:'rotate(75deg) scale(1.0)', offset:0.05 },
-    { left: cx+'px', top: halfH+'px', transform:'rotate(73deg) scale(1.08)',        offset:0.42 },
-    { left: cx+'px', top: halfH+'px', transform:'rotate(73deg) scale(1.0)',         offset:0.60 },
-    { left:'110vw',  top:'34vh', opacity:'1', transform:'rotate(75deg) scale(0.85)',offset:0.95 },
-    { left:'110vw',  top:'34vh', opacity:'0', transform:'rotate(75deg) scale(0.7)', offset:1    }
-  ], { duration: 3000, easing:'cubic-bezier(0.4,0,0.2,1)', fill:'forwards' });
-
-  // At center: explosion + show panel
-  setTimeout(() => {
-    const rkRect = rk.getBoundingClientRect();
-    starBurst(rkRect.left + rkRect.width/2, rkRect.top + rkRect.height/2);
-    setTimeout(() => openHintPanel(), 200);
-  }, 1260);
-
-  // Cleanup
-  setTimeout(() => {
-    clearInterval(flameInt);
-    rk.remove();
-    rocketActive = false;
-    document.getElementById('hintBtn').disabled = false;
-  }, 3100);
-}
-
-function spawnFlame(el) {
-  const r = el.getBoundingClientRect();
-  if (!r || r.left < -80 || r.left > window.innerWidth + 80) return;
-  const cols = ['#f472b6','#a78bfa','#fb923c','#fbbf24','#38bdf8','#ffffff'];
-  const f = document.createElement('div');
-  const sz = 3 + Math.random() * 9;
-  const col = cols[Math.floor(Math.random() * cols.length)];
-  f.style.cssText = `
-    position:fixed;
-    left:${r.left + r.width * 0.15 + (Math.random()-0.5)*12}px;
-    top:${r.top + r.height * 0.55 + (Math.random()-0.5)*14}px;
-    width:${sz}px;height:${sz}px;border-radius:50%;
-    background:${col};box-shadow:0 0 ${sz*2.5}px ${col};
-    pointer-events:none;z-index:9997;
-    animation:flameDie ${0.22+Math.random()*0.32}s ease-out forwards;
-  `;
-  document.body.appendChild(f);
-  setTimeout(() => f.remove(), 550);
-}
-
-function starBurst(cx, cy) {
-  const cols = ['#a78bfa','#38bdf8','#f472b6','#fbbf24','#fb923c','#ffffff','#4ade80'];
-  // Particles
-  for (let i = 0; i < 40; i++) {
-    const p = document.createElement('div');
-    const angle = (i / 40) * Math.PI * 2;
-    const dist = 55 + Math.random() * 200;
-    const sz = 2.5 + Math.random() * 8;
-    const col = cols[Math.floor(Math.random() * cols.length)];
-    p.style.cssText = `position:fixed;left:${cx}px;top:${cy}px;width:${sz}px;height:${sz}px;border-radius:50%;background:${col};box-shadow:0 0 ${sz*3}px ${col};pointer-events:none;z-index:9998;`;
-    p.animate([
-      { transform:'translate(-50%,-50%) scale(2)', opacity:'1' },
-      { transform:`translate(calc(-50% + ${Math.cos(angle)*dist}px),calc(-50% + ${Math.sin(angle)*dist}px)) scale(0)`, opacity:'0' }
-    ], { duration: 500 + Math.random()*500, easing:'ease-out', fill:'forwards' });
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 1100);
-  }
-  // Shockwave ring
-  for (let i = 0; i < 2; i++) {
-    const ring = document.createElement('div');
-    ring.style.cssText = `position:fixed;left:${cx}px;top:${cy}px;width:10px;height:10px;border-radius:50%;border:2.5px solid ${i===0?'#a78bfa':'#f472b6'};pointer-events:none;z-index:9996;transform:translate(-50%,-50%);`;
-    ring.animate([
-      { width:'10px', height:'10px', opacity:'1', border:'2.5px solid currentColor' },
-      { width:'240px', height:'240px', opacity:'0', border:'1px solid transparent' }
-    ], { duration: 650 + i*150, easing:'ease-out', fill:'forwards', delay: i*100 });
-    document.body.appendChild(ring);
-    setTimeout(() => ring.remove(), 900);
-  }
-}
-
-function openHintPanel() {
-  document.getElementById('hintOverlay').classList.add('show');
-  document.getElementById('hintPanel').classList.add('show');
-}
-function closeHint() {
-  document.getElementById('hintOverlay').classList.remove('show');
-  document.getElementById('hintPanel').classList.remove('show');
-}
 
 // ════════════════════════════════
 // CANVAS BACKGROUND
