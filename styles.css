@@ -202,6 +202,8 @@ section{scroll-margin-top:58px}
 .exp-actions{
   margin-top:20px;
   display:flex;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
 .exp-btn{
